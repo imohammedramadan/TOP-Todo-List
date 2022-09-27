@@ -10,10 +10,9 @@ const cardGenerator = (function () {
     }
 
     parent.innerHTML = "";
-    let listItem;
 
     for (let index = 0; index < dataArray.length; index++) {
-      listItem = document.createElement("li");
+      const listItem = document.createElement("li");
       listItem.classList.add("task-card");
       listItem.setAttribute("data-id", dataArray[index].taskId);
 

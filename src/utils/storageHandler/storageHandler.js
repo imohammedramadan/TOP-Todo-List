@@ -1,6 +1,6 @@
 const storageHandler = (function () {
   let _taskDataStorage = [];
-  let _taskProjectStorage = [];
+  let _projectDataStorage = [];
 
   const addTaskData = (dataObj, project) => {
     if (getTaskData()) _taskDataStorage = getTaskData();
@@ -13,12 +13,8 @@ const storageHandler = (function () {
     storeData("data", _taskDataStorage);
   };
 
-  const deleteData = (taskId) => {
+  const deleteTaskData = (taskId) => {
     _taskDataStorage = getTaskData();
-
-    if (!_taskDataStorage) return;
-
-    if (_taskDataStorage.length === 0) localStorage.removeItem("data");
 
     const taskIndex = _taskDataStorage.findIndex(
       (task) => task.taskId == taskId
@@ -47,19 +43,33 @@ const storageHandler = (function () {
   };
 
   const addProjectData = (projectObj) => {
-    if (getProjectData()) _taskProjectStorage = getProjectData();
+    if (getProjectData()) _projectDataStorage = getProjectData();
 
-    _taskProjectStorage.push(projectObj);
+    _projectDataStorage.push(projectObj);
 
-    storeData("projectData", _taskProjectStorage);
+    storeData("projectData", _projectDataStorage);
   };
 
   const getProjectData = () => {
     if (!localStorage.getItem("projectData")) {
-      _taskProjectStorage = [];
+      _projectDataStorage = [];
     } else {
       return JSON.parse(localStorage.getItem("projectData"));
     }
+  };
+
+  const deleteProjectData = (projectName) => {
+    _projectDataStorage = getProjectData();
+
+    console.log(_projectDataStorage);
+    const projectIndex = _projectDataStorage.findIndex(
+      (project) => project.projectName === projectName
+    );
+
+    if (projectIndex === -1) return;
+    _projectDataStorage.splice(projectIndex, 1);
+
+    storeData("projectData", _projectDataStorage);
   };
 
   const _generateId = () => {
@@ -71,11 +81,12 @@ const storageHandler = (function () {
   return {
     addTaskData,
     getTaskData,
-    deleteData,
+    deleteTaskData,
     editData,
     storeData,
     addProjectData,
     getProjectData,
+    deleteProjectData,
   };
 })();
 

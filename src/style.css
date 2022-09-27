@@ -138,6 +138,34 @@ aside {
   cursor: pointer;
 }
 
+.project-nav-item {
+  display: flex;
+  justify-content: space-between;
+  place-items: center;
+}
+.project-delete-btn {
+  background: none;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  place-items: center;
+  place-content: center;
+  cursor: pointer;
+}
+.project-delete-btn svg {
+  fill: var(--red-btn);
+}
+.project-delete-btn {
+  border: 2px solid var(--red-btn);
+}
+.project-delete-btn:hover {
+  background-color: var(--red-btn);
+}
+.project-delete-btn:hover > svg {
+  fill: var(--dark);
+}
+
 .active-nav-item {
   background-color: var(--dark);
 }
@@ -168,7 +196,7 @@ main {
   background-color: var(--dark);
   padding: 30px;
   border-radius: 16px 0 0 0;
-  max-width: calc(99vw - 240px);
+  max-width: calc(100vw - 240px);
 }
 
 .list-heading {
@@ -324,10 +352,6 @@ main {
   flex-direction: column;
   gap: 20px;
 }
-
-/* .modal * {
-  color: var(--dark);
-} */
 
 .modal input,
 .modal select,
