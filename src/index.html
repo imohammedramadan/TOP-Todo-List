@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <div class="logo">
+          <h1>Todo List</h1>
+        </div>
+      </header>
+
+      <aside>
+        <div class="side-nav">
+          <div class="date-nav">
+            <ul class="date-nav-list nav-list">
+              <li
+                class="date-nav-item all-items active-nav-item"
+                data-nav="all"
+              >
+                <p>All</p>
+              </li>
+              <li class="date-nav-item day-items" data-nav="today">
+                <p>Today</p>
+              </li>
+              <li class="date-nav-item week-items" data-nav="week">
+                <p>This Week</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-nav">
+            <div class="project-nav-header">
+              <h3>Projects</h3>
+            </div>
+            <ul class="project-nav-list nav-list"></ul>
+            <div class="project-nav-btn">
+              <button type="button" class="add-project-btn">
+                Add new project
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main>
+        <div class="project-container" data-category="All">
+          <div class="list-heading">
+            <h2>All</h2>
+          </div>
+          <div class="task-list-display">
+            <ul class="task-card-list"></ul>
+          </div>
+        </div>
+      </main>
+
+      <div class="modal-container"></div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

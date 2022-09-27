@@ -1,0 +1,394 @@
+:root {
+  --dark: #121212;
+  --blue-300: #053742;
+  --blue-200: #39a2db;
+  --blue-100: #a2dbfa;
+  --font-color: #e8f0f2;
+  --high: #7b0000;
+  --medium: #b15900;
+  --low: #a18900;
+  --red-btn: rgb(175, 0, 0);
+  --blue-btn: rgb(0, 156, 203);
+  --green-btn: rgb(0, 185, 74);
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--font-color);
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  background-color: var(--blue-300);
+  overflow-x: hidden;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+::placeholder {
+  color: var(--font-color);
+  opacity: 0.5;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert();
+}
+
+svg {
+  pointer-events: none;
+}
+
+/* =====app===== */
+#app {
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "aside main main"
+    "aside main main";
+  grid-template-columns: 240px calc(100vw - 240px);
+  max-width: 100vw;
+}
+/* =====app===== */
+
+/* =====header===== */
+header {
+  grid-area: header;
+}
+.logo {
+  background-color: var(--blue-300);
+  padding: 16.5px;
+  text-align: center;
+}
+/* =====header===== */
+
+/* =====sidebar===== */
+aside {
+  grid-area: aside;
+}
+.side-nav {
+  padding: 20px 0px 20px 20px;
+  background-color: var(--blue-300);
+  height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.side-nav p {
+  font-size: 22px;
+}
+.project-nav-header h3 {
+  font-size: 28px;
+}
+
+.date-nav-list,
+.project-nav,
+.project-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.date-nav-item,
+.project-nav-item {
+  padding: 10px 18px;
+  border-radius: 16px 0px 0px 16px;
+  border: 2px solid var(--dark);
+  border-right: none;
+  cursor: pointer;
+}
+
+.active-nav-item {
+  background-color: var(--dark);
+}
+
+.project-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.add-project-btn {
+  background-color: var(--dark);
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  border: none;
+}
+.add-project-btn:hover {
+  background-color: var(--blue-100);
+  color: var(--dark);
+}
+/* =====sidebar===== */
+
+/* =====main===== */
+main {
+  grid-area: main;
+  background-color: var(--dark);
+  padding: 30px;
+  border-radius: 16px 0 0 0;
+  max-width: calc(99vw - 240px);
+}
+
+.list-heading {
+  padding: 20px 20px 40px 80px;
+}
+
+.list-heading h2 {
+  font-size: 34px;
+  text-transform: capitalize;
+}
+
+.task-card-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(200px, 240px));
+  gap: 100px;
+  place-content: center;
+  flex-wrap: wrap;
+}
+
+.task-card {
+  background-color: var(--blue-300);
+  max-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.card-title h4 {
+  font-size: 20px;
+}
+
+.card-priority {
+  padding: 4px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.priority-High {
+  background-color: var(--high);
+}
+.priority-Medium {
+  background-color: var(--medium);
+}
+.priority-Low {
+  background-color: var(--low);
+}
+
+.card-details {
+  border: 2px solid var(--blue-200);
+  padding: 10px;
+  border-radius: 16px;
+}
+.card-details p {
+  font-size: 18px;
+}
+
+.card-date {
+  text-align: center;
+  border: 2px solid var(--blue-200);
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.controls-list {
+  display: flex;
+  gap: 10px;
+  place-content: space-between;
+}
+.controls-list button {
+  background: none;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  place-items: center;
+  place-content: center;
+  cursor: pointer;
+}
+
+.delete-btn svg {
+  fill: var(--red-btn);
+}
+.delete-btn {
+  border: 2px solid var(--red-btn);
+}
+.delete-btn:hover {
+  background-color: var(--red-btn);
+}
+
+.edit-btn svg {
+  fill: var(--blue-btn);
+}
+.edit-btn {
+  border: 2px solid var(--blue-btn);
+}
+.edit-btn:hover {
+  background-color: var(--blue-btn);
+}
+
+.done-btn svg {
+  fill: var(--green-btn);
+}
+.done-btn {
+  border: 2px solid var(--green-btn);
+}
+.done-btn:hover {
+  background-color: var(--green-btn);
+}
+
+.done-btn:hover,
+.done-btn:hover > svg,
+.edit-btn:hover,
+.edit-btn:hover > svg,
+.delete-btn:hover,
+.delete-btn:hover > svg {
+  fill: var(--dark);
+}
+
+.add-task-btn-container {
+  /* background-color: #39a2db; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  place-content: center;
+  place-items: center;
+}
+.add-task-btn {
+  background: transparent;
+  border: none;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border: 4px solid var(--font-color);
+  border-radius: 16px;
+}
+
+.add-task-btn p {
+  font-size: 40px;
+}
+
+/* =====modal===== */
+.modal,
+.project-modal {
+  background-color: var(--blue-300);
+  border: 4px solid var(--blue-100);
+  border-radius: 16px;
+}
+.modal form,
+.project-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* .modal * {
+  color: var(--dark);
+} */
+
+.modal input,
+.modal select,
+.modal textarea,
+.project-modal input {
+  background-color: #053742;
+  border: 2px solid var(--blue-100);
+  padding: 8px 10px;
+  font-size: 18px;
+  border-radius: 14px;
+  width: 100%;
+}
+
+.modal input:focus-visible,
+.modal select:focus-visible,
+.modal textarea:focus-visible {
+  border: 2px solid var(--blue-200);
+  outline: none;
+}
+
+.modal-form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-btns {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+
+.modal-form-btn {
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  place-items: center;
+}
+
+.modal-exit {
+  background-color: transparent;
+  border: 2px solid var(--red-btn);
+  fill: var(--red-btn);
+  cursor: pointer;
+}
+.modal-exit:hover {
+  background-color: var(--red-btn);
+  fill: var(--dark);
+}
+
+.modal-submit {
+  background-color: transparent;
+  border: 2px solid var(--green-btn);
+  fill: var(--green-btn);
+  cursor: pointer;
+}
+.modal-submit:hover {
+  background-color: var(--green-btn);
+  fill: var(--dark);
+}
+/* =====modal===== */
+/* =====main===== */
