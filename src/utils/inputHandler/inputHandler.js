@@ -2,7 +2,7 @@ const inputHandler = (function () {
   const getModalInputs = (e, taskModalForm) => {
     e.preventDefault();
 
-    const formData = Object.fromEntries(new FormData(e.target).entries());
+    const formData = Object.fromEntries(new FormData(taskModalForm).entries());
 
     taskModalForm.reset();
 
@@ -14,7 +14,7 @@ const inputHandler = (function () {
   const getProjectModalInputs = (e, taskModalForm) => {
     e.preventDefault();
 
-    const formData = Object.fromEntries(new FormData(e.target).entries());
+    const formData = Object.fromEntries(new FormData(taskModalForm).entries());
 
     taskModalForm.reset();
 

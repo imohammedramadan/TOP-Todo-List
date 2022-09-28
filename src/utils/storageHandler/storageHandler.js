@@ -3,7 +3,7 @@ const storageHandler = (function () {
   let _projectDataStorage = [];
 
   const addTaskData = (dataObj, project) => {
-    if (getTaskData()) _taskDataStorage = getTaskData();
+    if (getAllTasksData()) _taskDataStorage = getAllTasksData();
 
     dataObj.taskId = _generateId();
     dataObj.project = project;
@@ -14,7 +14,7 @@ const storageHandler = (function () {
   };
 
   const deleteTaskData = (taskId) => {
-    _taskDataStorage = getTaskData();
+    _taskDataStorage = getAllTasksData();
 
     const taskIndex = _taskDataStorage.findIndex(
       (task) => task.taskId == taskId
@@ -26,15 +26,59 @@ const storageHandler = (function () {
     storeData("data", _taskDataStorage);
   };
 
-  const editData = () => {
-    _taskDataStorage = getTaskData();
+  const getTaskData = (taskId) => {
+    _taskDataStorage = getAllTasksData();
+
+    const taskIndex = _taskDataStorage.findIndex(
+      (task) => task.taskId == taskId
+    );
+
+    if (taskIndex === -1) return;
+
+    return _taskDataStorage[taskIndex];
+  };
+
+  const editData = (taskId, taskObject) => {
+    _taskDataStorage = getAllTasksData();
+
+    const taskIndex = _taskDataStorage.findIndex(
+      (task) => task.taskId == taskId
+    );
+
+    if (taskIndex === -1) return;
+
+    _taskDataStorage[taskIndex].taskTitle = taskObject.taskTitle;
+    _taskDataStorage[taskIndex].taskPriority = taskObject.taskPriority;
+    _taskDataStorage[taskIndex].taskDetails = taskObject.taskDetails;
+    _taskDataStorage[taskIndex].taskDate = taskObject.taskDate;
+
+    storeData("data", _taskDataStorage);
+  };
+
+  const switchStatus = (taskId) => {
+    _taskDataStorage = getAllTasksData();
+
+    const taskIndex = _taskDataStorage.findIndex(
+      (task) => task.taskId == taskId
+    );
+
+    if (taskIndex === -1) return;
+
+    if (_taskDataStorage[taskIndex].taskStatus === true) {
+      _taskDataStorage[taskIndex].taskStatus = false;
+    } else {
+      _taskDataStorage[taskIndex].taskStatus = true;
+    }
+    storeData("data", _taskDataStorage);
+
+    return _taskDataStorage[taskIndex].taskStatus;
   };
 
   const storeData = (dataKey, dataArray) => {
     localStorage.setItem(dataKey, JSON.stringify(dataArray));
   };
 
-  const getTaskData = () => {
+  const getAllTasksData = () => {
     if (!localStorage.getItem("data")) {
       _taskDataStorage = [];
     } else {
@@ -61,7 +105,6 @@ const storageHandler = (function () {
   const deleteProjectData = (projectName) => {
     _projectDataStorage = getProjectData();
 
-    console.log(_projectDataStorage);
     const projectIndex = _projectDataStorage.findIndex(
       (project) => project.projectName === projectName
     );
@@ -80,9 +123,11 @@ const storageHandler = (function () {
 
   return {
     addTaskData,
+    getAllTasksData,
     getTaskData,
     deleteTaskData,
     editData,
+    switchStatus,
     storeData,
     addProjectData,
     getProjectData,

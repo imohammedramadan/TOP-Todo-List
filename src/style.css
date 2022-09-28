@@ -317,6 +317,19 @@ main {
   fill: var(--dark);
 }
 
+.status-done svg {
+  fill: var(--dark);
+}
+.status-done {
+  background-color: var(--green-btn) !important;
+}
+.status-done:hover > svg {
+  fill: var(--green-btn);
+}
+.status-done:hover {
+  background-color: transparent !important;
+}
+
 .add-task-btn-container {
   /* background-color: #39a2db; */
   width: 100%;

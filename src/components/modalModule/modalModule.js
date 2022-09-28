@@ -79,12 +79,11 @@ const modalController = (function () {
   };
 
   const _createEditModal = (taskObj) => {
-    // const taskId = taskObj._taskId;
-    const taskTitle = taskObj._taskTitle;
-    const taskPriority = taskObj._taskPriority;
-    const taskDetails = taskObj._taskDetails;
-    const taskDate = taskObj._taskDate;
-    // const taskStatus = taskObj._taskStatus;
+    const taskTitle = taskObj.taskTitle;
+    const taskPriority = taskObj.taskPriority;
+    const taskDetails = taskObj.taskDetails;
+    const taskDate = taskObj.taskDate;
+
     document
       .querySelector("#modal-task-title")
       .setAttribute("value", taskTitle);

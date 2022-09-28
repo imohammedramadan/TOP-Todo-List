@@ -1,4 +1,5 @@
 import checkIcon from "../../assets/icons/bx-check.svg";
+import crossIcon from "../../assets/icons/bx-x.svg";
 import trashIcon from "../../assets/icons/bx-trash.svg";
 import editIcon from "../../assets/icons/bx-edit-alt.svg";
 
@@ -15,10 +16,23 @@ const cardGenerator = (function () {
       const listItem = document.createElement("li");
       listItem.classList.add("task-card");
       listItem.setAttribute("data-id", dataArray[index].taskId);
+      const taskStatus = dataArray[index].taskStatus;
+      let statusIcon;
+      let statusBtnClass;
+      let srStatusText;
+      if (taskStatus === true) {
+        statusIcon = `${crossIcon}#cross`;
+        statusBtnClass = "done-btn status-done";
+        srStatusText = "not Done";
+      } else {
+        statusIcon = `${checkIcon}#check`;
+        statusBtnClass = "done-btn";
+        srStatusText = "Done";
+      }
 
       listItem.innerHTML = `
       <div class="card-title">
-        <h4>${dataArray[index].taskTitle}</h4>
+        <h3>${dataArray[index].taskTitle}</h3>
       </div>
       <div class="card-priority priority-${dataArray[index].taskPriority}">
         <p>${dataArray[index].taskPriority}</p>
@@ -50,10 +64,10 @@ const cardGenerator = (function () {
             </button>
           </li>
           <li class="control-item">
-            <button type="button" class="done-btn">
-              <p class="visually-hidden">Done</p>
+            <button type="button" class="${statusBtnClass}">
+              <p class="visually-hidden">Mark as ${srStatusText}</p>
               <svg width="24px" height="24px">
-                <use xlink:href="${checkIcon}#check" />
+                <use xlink:href="${statusIcon}" />
               </svg>
             </button>
           </li>

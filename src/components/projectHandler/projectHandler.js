@@ -34,6 +34,9 @@ const projectHandler = (function () {
   };
 
   const getProjectTasks = (project, objectArray) => {
+    if (!objectArray || objectArray.length < 1) {
+      return;
+    }
     if (project == "all") {
       return objectArray;
     } else if (project == "today") {
@@ -43,7 +46,6 @@ const projectHandler = (function () {
         isThisWeek(parseISO(object.taskDate))
       );
     } else {
-      // console.log(objectArray.filter((object) => object.project === project));
       return objectArray.filter((object) => object.project === project);
     }
   };
