@@ -1,6 +1,6 @@
 # TOP-Todo-List
 a simple todo list using vanilla JS, date-fns library and vite<br/>
-you can try out the app [here!](https://todo-list-top.netlify.app/)
+you can try out the app [here!](https://top-todo-list.vercel.app/)
 
 ## Project setup
 ```
